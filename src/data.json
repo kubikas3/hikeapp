@@ -1,0 +1,80 @@
+{
+  "backpack": {
+    "capacity": 50
+  },
+  "essentials": [
+    {
+      "name": "Toilet paper",
+      "weight": 0.05,
+      "longevity": 40
+    },
+    {
+      "name": "Water bottle",
+      "weight": 0.5,
+      "longevity": 5
+    },
+    {
+      "name": "First-aid kit",
+      "weight": 1
+    },
+    {
+      "name": "Energy bar",
+      "weight": 0.1,
+      "longevity": 10
+    },
+    {
+      "name": "Sandwich",
+      "weight": 0.15,
+      "longevity": 10
+    },
+    {
+      "name": "Tent",
+      "weight": 1
+    },
+    {
+      "name": "Knife",
+      "weight": 0.1
+    },
+    {
+      "name": "Lighter",
+      "weight": 0.04
+    },
+    {
+      "name": "Phone",
+      "weight": 0.2
+    },
+    {
+      "name":"Power bank",
+      "weight": 0.2
+    }
+  ],
+  "spring": [
+    {
+      "name": "Jacket",
+      "weight": 0.5
+    }
+  ],
+  "summer": [
+    {
+      "name": "Cap",
+      "weight": 0.07
+    }
+  ],
+  "fall": [
+    {
+      "name": "Windbreaker",
+      "weight": 0.5
+    }
+  ],
+  "winter": [
+    {
+      "name": "Coffee",
+      "weight": 0.5,
+      "longevity": 20
+    },
+    {
+      "name": "Coat",
+      "weight": 1
+    }
+  ]
+}
