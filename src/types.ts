@@ -5,3 +5,9 @@ export interface Item {
 }
 
 export type Season = "spring" | "summer" | "fall" | "winter";
+
+export interface HikeInfo {
+  distance: number | null;
+  season: Season;
+  capacity: number;
+}

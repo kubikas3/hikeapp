@@ -13,8 +13,8 @@ import { Item, Season } from "../types";
 import data from "../data.json";
 import { useField } from "formik";
 
-const ItemTable: React.FC = () => {
-  const [{ value: distance }] = useField<number>("distance");
+export const ItemTable: React.FC = () => {
+  const [{ value: distance }] = useField<number | null>("distance");
   const [{ value: season }] = useField<Season>("season");
   const [{ value: capacity }] = useField<number>("capacity");
   const supplies = data.essentials.concat(data[season]);
@@ -22,7 +22,7 @@ const ItemTable: React.FC = () => {
   let totalQuantity = 0;
   let totalWeight = 0;
 
-  if (distance > 0) {
+  if (typeof distance === "number" && distance > 0) {
     for (let i of supplies) {
       const quantity = i.longevity ? Math.ceil(distance / i.longevity) : 1;
       const item: Item = {
@@ -46,7 +46,7 @@ const ItemTable: React.FC = () => {
         </Alert>
       )}
       <TableContainer component={Paper} sx={{ flex: "0 1 auto" }} elevation={2}>
-        <Table sx={{ minWidth: 650 }} stickyHeader>
+        <Table sx={{ minWidth: 400 }} stickyHeader>
           <TableHead>
             <TableRow>
               <TableCell>Item</TableCell>
@@ -88,5 +88,3 @@ const ItemTable: React.FC = () => {
     </>
   );
 };
-
-export default ItemTable;
