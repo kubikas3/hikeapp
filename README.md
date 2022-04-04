@@ -7,7 +7,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 When you open the app you will see three input fields at the top, play around with those input fields and see what happens.
 Notice that you cannot exceed your backpack capacity.
 
-
 ## Available Scripts
 
 In the project directory, you can run:
