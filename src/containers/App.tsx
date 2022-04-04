@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import { theme } from "../styles/theme";
 import { HikeInfo } from "../types";
 import { Form } from "./Form";
-import { ItemTable } from "./ItemTable";
+import { Items } from "./Items";
 
 const initialValues: HikeInfo = {
   distance: null,
@@ -27,7 +27,7 @@ function App() {
         <Formik initialValues={initialValues} onSubmit={() => {}}>
           <>
             <Form />
-            <ItemTable />
+            <Items />
           </>
         </Formik>
       </Container>

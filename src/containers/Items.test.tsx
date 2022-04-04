@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Formik } from "formik";
-import { ItemTable } from "./ItemTable";
 import { HikeInfo } from "../types";
+import { Items } from "./Items";
 
 test("on too much weight, alert should be rendered", () => {
   const initialValues: HikeInfo = {
@@ -12,7 +12,7 @@ test("on too much weight, alert should be rendered", () => {
 
   render(
     <Formik initialValues={initialValues} onSubmit={() => {}}>
-      <ItemTable />
+      <Items />
     </Formik>
   );
 
@@ -32,7 +32,7 @@ test("on positive distance, items to be rendered", () => {
 
   render(
     <Formik initialValues={initialValues} onSubmit={() => {}}>
-      <ItemTable />
+      <Items />
     </Formik>
   );
 
@@ -48,7 +48,7 @@ test("on negative distance, no items to be rendered", () => {
 
   render(
     <Formik initialValues={initialValues} onSubmit={() => {}}>
-      <ItemTable />
+      <Items />
     </Formik>
   );
 
@@ -64,7 +64,7 @@ test("on summer, cap to be rendered", () => {
 
   render(
     <Formik initialValues={initialValues} onSubmit={() => {}}>
-      <ItemTable />
+      <Items />
     </Formik>
   );
 

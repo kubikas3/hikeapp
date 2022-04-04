@@ -13,7 +13,7 @@ import { useField } from "formik";
 import data from "../data.json";
 import { Item, Season } from "../types";
 
-export const ItemTable: React.FC = () => {
+export const Items: React.FC = () => {
   const [{ value: distance }] = useField<number | null>("distance");
   const [{ value: season }] = useField<Season>("season");
   const [{ value: capacity }] = useField<number>("capacity");
