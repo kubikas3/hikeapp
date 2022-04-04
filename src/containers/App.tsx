@@ -1,10 +1,10 @@
 import { Container } from "@mui/material";
-import { Formik } from "formik";
-import { Form } from "./Form";
-import { ItemTable } from "./ItemTable";
 import { ThemeProvider } from "@mui/system";
+import { Formik } from "formik";
 import { theme } from "../styles/theme";
 import { HikeInfo } from "../types";
+import { Form } from "./Form";
+import { ItemTable } from "./ItemTable";
 
 const initialValues: HikeInfo = {
   distance: null,

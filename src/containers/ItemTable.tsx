@@ -9,9 +9,9 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { Item, Season } from "../types";
-import data from "../data.json";
 import { useField } from "formik";
+import data from "../data.json";
+import { Item, Season } from "../types";
 
 export const ItemTable: React.FC = () => {
   const [{ value: distance }] = useField<number | null>("distance");
