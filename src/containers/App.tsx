@@ -1,38 +1,31 @@
 import { Container } from "@mui/material";
 import { ThemeProvider } from "@mui/system";
-import { Formik } from "formik";
+import React from "react";
+import { Provider } from "react-redux";
+import { store } from "../app/store";
 import { theme } from "../styles/theme";
-import { HikeInfo } from "../types";
 import { Form } from "./Form";
 import { Items } from "./Items";
 
-const initialValues: HikeInfo = {
-  distance: null,
-  capacity: 15,
-  season: "spring",
-};
-
-function App() {
+export const App: React.FC = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <Container
-        maxWidth="md"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100vh",
-          padding: "16px",
-        }}
-      >
-        <Formik initialValues={initialValues} onSubmit={() => {}}>
-          <>
-            <Form />
-            <Items />
-          </>
-        </Formik>
-      </Container>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Container
+          maxWidth="md"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100vh",
+            padding: "16px",
+          }}
+        >
+          <Form />
+          <Items />
+        </Container>
+      </ThemeProvider>
+    </Provider>
   );
-}
+};
 
 export default App;

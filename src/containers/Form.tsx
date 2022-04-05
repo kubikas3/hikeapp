@@ -4,22 +4,30 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
   TextField,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import { Field, Form as FForm } from "formik";
 import React from "react";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { selectCapacity, setCapacity } from "../app/slices/backpackSlice";
+import {
+  selectDistance,
+  selectSeason,
+  setDistance,
+  setSeason,
+} from "../app/slices/hikeSlice";
+import { Season } from "../types";
 
 export const Form: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const capacity = useAppSelector(selectCapacity);
+  const distance = useAppSelector(selectDistance);
+  const season = useAppSelector(selectSeason);
+
   return (
-    <Box
-      component={FForm}
-      display="flex"
-      justifyContent="space-between"
-      marginBottom="16px"
-    >
-      <Field
-        as={TextField}
+    <Box display="flex" justifyContent="space-between" marginBottom="16px">
+      <TextField
         name="distance"
         label="Distance"
         placeholder="e.g. 70km"
@@ -29,33 +37,41 @@ export const Form: React.FC = () => {
         InputProps={{
           endAdornment: <InputAdornment position="end">km</InputAdornment>,
         }}
+        onChange={(e) => dispatch(setDistance(Number(e.target.value)))}
+        value={distance || ""}
       />
       <FormControl sx={{ maxWidth: "200px", width: "33%", margin: "0 8px" }}>
         <InputLabel id="season-select-label">Season</InputLabel>
-        <Field
-          as={Select}
+        <Select
           name="season"
           labelId="season-select-label"
           label="Season"
+          onChange={(e: SelectChangeEvent<Season>) =>
+            dispatch(setSeason(e.target.value as Season))
+          }
+          value={season}
         >
           <MenuItem value="spring">Spring</MenuItem>
           <MenuItem value="summer">Summer</MenuItem>
           <MenuItem value="fall">Fall</MenuItem>
           <MenuItem value="winter">Winter</MenuItem>
-        </Field>
+        </Select>
       </FormControl>
       <FormControl sx={{ maxWidth: "200px", width: "34%" }}>
         <InputLabel id="capacity-select-label">Backpack Capacity</InputLabel>
-        <Field
-          as={Select}
+        <Select
           name="capacity"
           labelId="capacity-select-label"
           label="Backpack Capacity"
+          onChange={(e: SelectChangeEvent<number>) =>
+            dispatch(setCapacity(Number(e.target.value)))
+          }
+          value={capacity}
         >
           <MenuItem value={15}>15 kg</MenuItem>
           <MenuItem value={30}>30 kg</MenuItem>
           <MenuItem value={50}>50 kg</MenuItem>
-        </Field>
+        </Select>
       </FormControl>
     </Box>
   );

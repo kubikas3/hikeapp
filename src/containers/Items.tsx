@@ -9,33 +9,47 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useField } from "formik";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import {
+  selectCapacity,
+  selectItems,
+  selectTotalQuantity,
+  selectTotalWeight,
+  setItems,
+} from "../app/slices/backpackSlice";
+import { selectDistance, selectSeason } from "../app/slices/hikeSlice";
 import data from "../data.json";
-import { Item, Season } from "../types";
+import { Item } from "../types";
 
 export const Items: React.FC = () => {
-  const [{ value: distance }] = useField<number | null>("distance");
-  const [{ value: season }] = useField<Season>("season");
-  const [{ value: capacity }] = useField<number>("capacity");
+  const dispatch = useAppDispatch();
+  const capacity = useAppSelector(selectCapacity);
+  const distance = useAppSelector(selectDistance);
+  const season = useAppSelector(selectSeason);
+  const items = useAppSelector(selectItems);
+  const totalQuantity = useAppSelector(selectTotalQuantity);
+  const totalWeight = useAppSelector(selectTotalWeight);
   const supplies = data.essentials.concat(data[season]);
-  const items: Item[] = [];
-  let totalQuantity = 0;
-  let totalWeight = 0;
 
-  if (typeof distance === "number" && distance > 0) {
-    for (let i of supplies) {
-      const quantity = i.longevity ? Math.ceil(distance / i.longevity) : 1;
-      const item: Item = {
-        name: i.name,
-        weight: i.weight,
-        quantity: quantity,
-      };
+  useEffect(() => {
+    const items: Item[] = [];
 
-      totalQuantity += quantity;
-      totalWeight += quantity * i.weight;
-      items.push(item);
+    if (distance > 0) {
+      for (let i of supplies) {
+        const quantity = i.longevity ? Math.ceil(distance / i.longevity) : 1;
+        const item: Item = {
+          name: i.name,
+          weight: i.weight,
+          quantity: quantity,
+        };
+
+        items.push(item);
+      }
     }
-  }
+
+    dispatch(setItems(items));
+  }, [distance, season, capacity]);
 
   return (
     <>
